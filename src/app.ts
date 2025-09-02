@@ -175,6 +175,21 @@ app.post("/scores", VerifyToken, async (req: AuthRequest, res: Response): Promis
     }
 });
 
+// ★★★ ここから追加 ★★★
+// GET / - ルートURLへのアクセスに対する応答
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).json({ 
+        message: "Welcome to the Stopwatch Game API!",
+        endpoints: {
+            register: "POST /users/new",
+            login: "POST /users/login",
+            getScores: "GET /scores (Auth Required)",
+            postScore: "POST /scores (Auth Required)"
+        }
+     });
+});
+// ★★★ ここまで追加 ★★★
+
 
 // サーバーを起動
 app.listen(PORT, () => {
