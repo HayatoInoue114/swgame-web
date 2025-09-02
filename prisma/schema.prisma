@@ -15,7 +15,7 @@ model User {
   name     String  @unique
   password String
   salt     String
-  scores   Score[] // Add this line: A user can have multiple scores
+  scores   Score[] // ユーザーが複数のスコアを持てるようにする関連付け
 }
 
 model Score {
@@ -23,7 +23,7 @@ model Score {
   score     Int
   createdAt DateTime @default(now())
 
-  // Add these lines to create the relationship
+  // ユーザーとスコアを紐付けるための関連付け
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
 }
